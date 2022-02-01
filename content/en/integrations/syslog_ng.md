@@ -69,7 +69,7 @@ Configure Syslog-ng to gather logs from your host, containers, & services.
     ...
 
     # For Datadog platform:
-    template DatadogFormat { template("YOURAPIKEY <${PRI}>1 ${ISODATE} ${HOST:--} ${PROGRAM:--} ${PID:--} ${MSGID:--} ${SDATA:--} $MSG\n"); };
+    template DatadogFormat { template("YOURAPIKEY <${PRI}>1 ${ISODATE}  ${HOST:--} ${PROGRAM:--} ${PID:--} ${MSGID:--} ${SDATA:--} $MSG\n"); };
     destination d_datadog { tcp("intake.logs.datadoghq.com" port(10514) template(DatadogFormat)); };
     ```
 
@@ -104,13 +104,13 @@ Configure Syslog-ng to gather logs from your host, containers, & services.
 5. (Optional) Set the source on your logs. To set the source, use the following format (if you have several sources, change the name of the format in each file):
 
     ```conf
-    template DatadogFormat { template("<API_KEY> <${PRI}>1 ${ISODATE} ${HOST:--} ${PROGRAM:--} ${PID:--} ${MSGID:--} [metas@0 ddsource=\"test\"] $MSG\n"); };
+    template DatadogFormat { template("<API_KEY> <${PRI}>1  ${ISODATE} ${HOST:--} ${PROGRAM:--} ${PID:--} ${MSGID:--} [metas@0 ddsource=\"test\"] $MSG\n"); };
     ```
 
     You can also add custom tags with the `ddtags` attribute:
 
     ```conf
-    template DatadogFormat { template("<API_KEY> <${PRI}>1 ${ISODATE} ${HOST:--} ${PROGRAM:--} ${PID:--} ${MSGID:--} [metas@0 ddsource=\"test\" ddtags=\"env:test,user:test_user,<KEY:VALUE>\"] $MSG\n"); };
+    template DatadogFormat { template("<API_KEY> <${PRI}>1  ${ISODATE} ${HOST:--} ${PROGRAM:--} ${PID:--} ${MSGID:--} [metas@0 ddsource=\"test\" ddtags=\"env:test,user:test_user,<KEY:VALUE>\"] $MSG\n"); };
     ```
 
 6. Restart syslog-ng.
